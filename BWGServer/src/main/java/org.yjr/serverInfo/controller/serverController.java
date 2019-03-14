@@ -98,4 +98,9 @@ public class serverController {
         result.setFlag(responseServerEntity.isFlag());
         return result;
     }
+
+    @RequestMapping("/softs")
+    public String toSofts(){
+        return "softs";
+    }
 }

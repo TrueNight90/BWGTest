@@ -21,6 +21,14 @@
             <p class="navbar-text"><a class="btn" href="/softs">软件</a></p>
         </div>
     </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <button class="btn">windows</button>
+            <button class="btn">android</button>
+            <button class="btn">mac</button>
+            <button class="btn">ios</button>
+        </div>
+    </div>
 
 </body>
 <script>

@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: bwgServer
   h2:
@@ -9,7 +11,7 @@ spring:
     platform: h2
     #data: classpath:sql/data.sql
     schema: classpath:sql/schema.sql
-    url: jdbc:h2:file:/home/h2/serverdb;AUTO_Server=TRUE;DB_CLOSE_DELAY=-1
+    #url: jdbc:h2:file:/home/h2/serverdb;AUTO_Server=TRUE;DB_CLOSE_DELAY=-1
     #url: jdbc:h2:file:D:\\h2\\quickstart;AUTO_Server=TRUE;DB_CLOSE_DELAY=-1
   jpa:
     show-sql: true

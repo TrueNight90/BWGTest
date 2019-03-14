@@ -7,6 +7,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.yjr.serverInfo.entity.BwgServerInfo;
 
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -21,7 +22,11 @@ public class BWGService {
         return bwgRepository.findAll();
     }
 
-    public BwgServerInfo getDefaultInfo(){ return bwgRepository.findAll().get(0);}
+    public BwgServerInfo getDefaultInfo(){
+        BwgServerInfo bwgServerInfo = bwgRepository.findAll().get(0);
+        bwgServerInfo = baseEncode(bwgServerInfo);
+        return bwgServerInfo;
+    }
 
     public BwgServerInfo findById(Long id){
         return bwgRepository.getOne(id);
@@ -44,5 +49,13 @@ public class BWGService {
             return all.get(0);
         }
         return null;
+    }
+
+    public BwgServerInfo baseEncode(BwgServerInfo bwgServerInfo){
+        String url = bwgServerInfo.getPwdType()+":"+bwgServerInfo.getPassword()+"@"+bwgServerInfo.getIp()+":"+bwgServerInfo.getPort();
+        Base64.Encoder encoder = Base64.getEncoder();
+        String ssUrl = "ss://" + new String(encoder.encode(url.getBytes()));
+        bwgServerInfo.setSsUrl(ssUrl);
+        return bwgServerInfo;
     }
 }

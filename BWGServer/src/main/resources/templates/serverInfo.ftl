@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <title>Spring Boot Demo - FreeMarker</title>
+    <title>搬瓦工SS信息</title>
     <script crossorigin="anonymous" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" src="https://lib.baomitu.com/jquery/3.3.1/jquery.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-rkSGcquOAzh5YMplX4tcXMuXXwmdF/9eRLkw/gNZG+1zYutPej7fxyVLiOgfoDgi" src="https://lib.baomitu.com/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/js/qrcode.js"></script>
+    <style>
+        .table{
+            max-width: 1440px;
+            text-align: center;
+            margin: auto;
+        }
+        .table td{
+            width:50%;
+        }
+        td img{
+            margin: auto;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h2>搬瓦工SS信息<h2>
+
 
         <form id="info">
-            <table>
+            <h2>搬瓦工SS信息<h2>
+            <table class="table">
                 <tr>
                     <td>ip:</td>
                     <td><input name = "ip"></td>
@@ -26,6 +51,15 @@
                     <td>pwdType:</td>
                     <td><input name = "pwdType"></td>
                 </tr>
+                <tr>
+                    <td>ss:</td>
+                    <td><input name = "ssUrl"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="qrcode">
+
+                    </td>
+                </tr>
             </table>
         </form>
 
@@ -40,6 +74,7 @@
                 for(var i in data){
                     $('input[name="'+i+'"]').val(data[i]);
                 }
+                new QRCode($('#qrcode')[0], $('input[name="ssUrl"]').val());
             }
         })
     })

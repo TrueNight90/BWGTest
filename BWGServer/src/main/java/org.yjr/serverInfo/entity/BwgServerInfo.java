@@ -14,6 +14,15 @@ public class BwgServerInfo implements Serializable {
     private String port;
     private String password;
     private String pwdType;
+    private String ssUrl;
+
+    public String getSsUrl() {
+        return ssUrl;
+    }
+
+    public void setSsUrl(String ssUrl) {
+        this.ssUrl = ssUrl;
+    }
 
     public String getIp() {
         return ip;
