@@ -28,7 +28,7 @@ public class AppUserDetailsService implements UserDetailsService {
         logger.info("username="+userInfo.getUsername());
         UserDetailsImpl userDetails = null;
         if(null!=userInfo){
-            userDetails = new UserDetailsImpl(userInfo.getUsername(),"{bcrypt}"+new BCryptPasswordEncoder().encode(userInfo.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+            userDetails = new UserDetailsImpl(userInfo.getUsername(),new BCryptPasswordEncoder().encode(userInfo.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
             //userDetails = new UserDetailsImpl(userInfo.getUsername(),userInfo.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         }
         //user = new User(s,"a65146002", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
