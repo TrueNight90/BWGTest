@@ -13,14 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <p class="navbar-text"><a class="btn" href="Index">首页</a></p>
-            <p class="navbar-text"><a class="btn" href="/Infos">服务器信息</a></p>
-            <p class="navbar-text"><a class="btn" href="/softs">软件</a></p>
-        </div>
-    </nav>
+    <#--<#include  "/inc/top.ftl">-->
+    <#include  "/inc/top.ftl" >
     <div class="jumbotron">
         <div class="container">
             <button class="btn">windows</button>

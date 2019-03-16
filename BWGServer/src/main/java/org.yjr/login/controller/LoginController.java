@@ -10,7 +10,7 @@ public class LoginController {
 
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @RequestMapping("/login1")
+    @RequestMapping("/loginPage")
     public String toLoginPage(){
         return "login";
     }

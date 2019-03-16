@@ -19,49 +19,81 @@ import org.yjr.serverInfo.service.BWGService;
 import java.util.List;
 
 @Controller
+@RequestMapping("/server")
 public class serverController {
     private Logger logger = LoggerFactory.getLogger(serverController.class);
 
     @Autowired
     private BWGService bwgService;
 
-    @RequestMapping("/Infos")
+    /**
+     * 查看所有服务器信息
+     * @return
+     */
+    @RequestMapping("/infos")
     @ResponseBody
     public List<BwgServerInfo> findInfos(){
         return bwgService.findAll();
     }
 
-    @RequestMapping("/Info")
+    /**
+     * 查看默认服务器信息
+     * @return
+     */
+    @RequestMapping("/info")
     @ResponseBody
     public BwgServerInfo getDefaultInfo(){
         return bwgService.getDefaultInfo();
     }
 
-    @RequestMapping("/Info/{id}")
+    /**
+     * 查看指定id的服务器信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/info/{id}")
     @ResponseBody
     public BwgServerInfo findInfoById(@PathVariable long id){
         return bwgService.findById(id);
     }
 
-    @RequestMapping("/Info/{id}/{port}")
+    /**
+     * 指定id的服务器修改端口信息
+     * @param id
+     * @param port
+     */
+    @RequestMapping("/info/{id}/{port}")
     @ResponseBody
     public void setServerInfo(@PathVariable("id") Long id,@PathVariable("port") String port){
         BwgServerInfo bwgServerInfo = bwgService.findById(id);
         bwgServerInfo.setPort(port);
         bwgService.saveInfo(bwgServerInfo);
     }
-    @RequestMapping("/Index")
+
+    /**
+     * 跳转展示页
+     * @return
+     */
+    @RequestMapping("/show")
     public ModelAndView index(){
         return new ModelAndView("serverInfo");
     }
 
-    @PostMapping("/Info")
+    /**
+     * 保存提交的服务器信息
+     * @param bwgServerInfo
+     */
+    @PostMapping("/info")
     @ResponseBody
     public void saveInfoDetail(BwgServerInfo bwgServerInfo){
         bwgService.saveInfoDetail(bwgServerInfo);
     }
 
-    @RequestMapping("/ServerInfo")
+    /**
+     * 从远程端获取服务器信息，并保存到当前
+     * @return
+     */
+    @RequestMapping("/fromServerToInfo")
     @ResponseBody
     public ResponseServerEntity saveInfoByWebService(){
         ResponseServerEntity result = new ResponseServerEntity();
@@ -84,6 +116,11 @@ public class serverController {
         return result;
     }
 
+    /**
+     * 修改远程端的服务器端口
+     * @param port
+     * @return
+     */
     @RequestMapping("/ServerInfo/{port}")
     @ResponseBody
     public ResponseServerEntity modifyInfoByWebService(@PathVariable String port){
@@ -99,8 +136,4 @@ public class serverController {
         return result;
     }
 
-    @RequestMapping("/softs")
-    public String toSofts(){
-        return "softs";
-    }
 }

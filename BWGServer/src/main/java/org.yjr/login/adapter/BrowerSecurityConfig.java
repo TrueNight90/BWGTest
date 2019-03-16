@@ -1,6 +1,7 @@
 package org.yjr.login.adapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,18 +19,22 @@ import java.lang.reflect.Method;
 @Configuration
 public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${excludePath}")
+    private  String excludePath;
+
     @Autowired
     public UserDetailsService appUserDetailsService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         http.formLogin()
-                .loginPage("/login1")
+                .loginPage("/loginPage")
                 .loginProcessingUrl("/forLogin").usernameParameter("username").passwordParameter("password")
                 .successForwardUrl("/Index").failureForwardUrl("/login/error")
                 .and().logout().logoutUrl("/logout")
                 .and().authorizeRequests()
-                .antMatchers("/softs/**","/login1","/h2-console/**").permitAll()
+                //.antMatchers("/softs/**","/loginPage","/h2-console/**").permitAll()
+                .antMatchers(excludePath.split(",")).permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().ignoringAntMatchers("/h2-console/**")
                 .and().headers().frameOptions().sameOrigin();

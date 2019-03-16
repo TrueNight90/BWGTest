@@ -11,22 +11,44 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        .container{
+            min-width: 60rem;
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        textarea{
+            height: 10rem !important;
+            margin-bottom: 1rem;
+        }
+        button{
+            outline:0px; -webkit-appearance:none;
+        }
+    </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <p class="navbar-text"><a class="btn" href="index">首页</a></p>
-            <p class="navbar-text"><a class="btn" href="/server/infos">服务器信息</a></p>
-            <p class="navbar-text"><a class="btn" href="/softs">软件</a></p>
-        </div>
-    </nav>
-
+    <div class="container">
+        <textarea class="form-control" placeholder="请输入所有选项并用,隔开"></textarea>
+        <button id="btn" class="btn btn-lg btn-primary btn-block" >随机</button>
+    </div>
 </body>
 <script>
-    $('li').click(function () {
-        $('li').removeClass('active');
-        $(this).addClass("active");
+    $('#btn').click(function(){
+        click();
     })
+    function click(){
+        var list = $('textarea').val().split(",");
+        //list.sort(randomsort);
+        var lenth = list.length;
+        var random = Math.round(Math.random()*lenth);
+        alert(list[random]);
+    }
+    function randomsort(a, b) {
+        return Math.random()>.5 ? -1 : 1;
+        //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+    }
 </script>
 </html>

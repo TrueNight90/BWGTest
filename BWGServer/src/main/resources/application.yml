@@ -26,3 +26,5 @@ logging:
       springframework:
         web: debug
         security: debug
+
+excludePath: /softs/**,/loginPage,/h2-console/**
