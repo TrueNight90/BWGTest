@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.yjr.serverInfo.entity.BwgServerInfo;
+import org.yjr.utils.MailSenderUtil;
+import org.yjr.utils.entity.MailDO;
 
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BWGService {
@@ -17,6 +18,9 @@ public class BWGService {
 
     @Autowired
     private BWGRepository bwgRepository;
+
+    @Autowired
+    private MailSenderUtil mailSenderUtil;
 
     public List<BwgServerInfo> findAll(){
         return bwgRepository.findAll();
@@ -37,7 +41,22 @@ public class BWGService {
     }
 
     public void saveInfoDetail(BwgServerInfo bwgServerInfo){
-        bwgRepository.saveAndFlush(bwgServerInfo);
+        BwgServerInfo bwgServerInfo1 = null;
+        bwgServerInfo1 = bwgRepository.saveAndFlush(bwgServerInfo);
+        if(null != bwgServerInfo1){
+            MailDO mailDO = new MailDO();
+            mailDO.setMailPath("mail/infoChange");
+            mailDO.setSubject("新端口地址");
+            Map map = new HashMap();
+            map.put("port",bwgServerInfo1.getPort());
+            mailDO.setMap(map);
+            List list = new ArrayList();
+            list.add("546710786@qq.com");
+            list.add("451062614@qq.com");
+
+            mailSenderUtil.sendTemplateMail(list,mailDO);
+        }
+
     }
 
     public BwgServerInfo findByEntity(BwgServerInfo bwgServerInfo){

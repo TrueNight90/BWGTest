@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head lang="en">
     <title>首页</title>
     <script crossorigin="anonymous" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" src="https://lib.baomitu.com/jquery/3.3.1/jquery.js"></script>
@@ -73,7 +73,8 @@
                     <span class="glyphicon glyphicon-lock input-group-addon"></span>
                     <input class="form-control" type="password" name="password" placeholder="password">
                 </div>
-                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
+                <!--<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">-->
+                <input th:name="${_csrf.parameterName}" type="hidden" th:value="${_csrf.token}">
                 <br>
                 <input class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="Login">
             </form>

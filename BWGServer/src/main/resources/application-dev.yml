@@ -1,10 +1,12 @@
 spring:
   datasource:
     url: jdbc:h2:file:D:\\h2\\quickstart;AUTO_Server=TRUE;DB_CLOSE_DELAY=-1
-  freemarker:
+#  freemarker:
+#    cache: false
+#    settings:
+#      template_update_delay: 0
+  thymeleaf:
     cache: false
-    settings:
-      template_update_delay: 0
 soft:
   softPath: /soft/**
   softResourcePath: file:D://soft/

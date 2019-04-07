@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <title>首页</title>
+    <div th:replace="inc/top :: forHead"></div>
+</head>
+<body>
+    <div th:replace="inc/top :: nav"></div>
+    <!--<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <p class="navbar-text"><a class="btn" href="index">首页</a></p>
+            <p class="navbar-text"><a class="btn" href="/server/infos">服务器信息</a></p>
+            <p class="navbar-text"><a class="btn" href="/softs">软件</a></p>
+        </div>
+    </nav>-->
+
+</body>
+<script>
+    $('li').click(function () {
+        $('li').removeClass('active');
+        $(this).addClass("active");
+    })
+</script>
+</html>

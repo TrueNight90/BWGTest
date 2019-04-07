@@ -1,7 +1,8 @@
 spring:
   datasource:
     url: jdbc:h2:file:/home/h2/serverdb;AUTO_Server=TRUE;DB_CLOSE_DELAY=-1
-
+  mail:
+    password:
 soft:
   softPath: /soft/**
   softResourcePath: file:/home/soft/

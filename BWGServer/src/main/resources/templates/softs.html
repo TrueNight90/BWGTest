@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <title>首页</title>
+    <div th:replace="inc/top :: forHead"></div>
+    <style>
+        /*@media (min-width: 1440px) {
+            .container{
+                width: 100%;
+            }
+            img{
+                width: 100%;
+            }
+        }*/
+        img{
+            width: 100%;
+        }
+        .jumbotron{
+            padding-top: 30px;
+        }
+        .imgDiv{
+            position: relative;
+        }
+        .shade{
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background: black;
+            opacity: 0.7;
+            top: 0;
+            left: 0;
+            transition: all 1.5s;
+            z-index: -1;
+        }
+        .imgDiv:hover .shade{
+            width: 100%;
+            z-index: 1;
+        }
+        button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="inc/top :: nav"></div>
+    <div class="jumbotron">
+        <div class="container" style="overflow:hidden">
+            <div style="background: black;float: left;width: 50%;">
+                <div class="imgDiv">
+                    <img src="/img/1.jpg">
+                    <div class="shade">
+                        <button class="btn">windows</button>
+                    </div>
+                </div>
+                <div class="imgDiv">
+                    <img src="/img/3.jpg">
+                    <div class="shade">
+                        <button class="btn">mac</button>
+                    </div>
+                </div>
+            </div>
+            <div style="background: yellow;float: left;width: 50%;">
+                <div class="imgDiv">
+                    <img src="/img/2.jpg">
+                    <div class="shade">
+                        <button class="btn">android</button>
+                    </div>
+                </div>
+                <div class="imgDiv">
+                    <img src="/img/4.jpg">
+                    <div class="shade">
+                        <button class="btn">ios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    $('li').click(function () {
+        $('li').removeClass('active');
+        $(this).addClass("active");
+    })
+</script>
+</html>

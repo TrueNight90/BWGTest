@@ -18,7 +18,27 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: update
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+  #thymeleaf end
+  mail:
+    host: smtp.163.com
+    username: &username developall@163.com
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
+
+#日志级别
 logging:
   level:
     root: info
@@ -27,4 +47,18 @@ logging:
         web: debug
         security: debug
 
-excludePath: /softs/**,/loginPage,/h2-console/**
+#健康检查
+management:
+  endpoint:
+    health:
+      show-details: always
+
+#免登陆路径
+excludePath: /softs/**,/loginPage,/h2-console/**,/img/**
+
+#权限
+roles: "{ADMIN: '/actuator/**'}"
+
+#发件服务器
+mail:
+  from: *username
