@@ -47,6 +47,10 @@ logging:
         web: debug
         security: debug
 
+#mybatis
+mybatis:
+  mapperLocation: classpath:mapper/*.xml
+
 #健康检查
 management:
   endpoint:
